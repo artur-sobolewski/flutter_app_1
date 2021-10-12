@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'What\'s your favorite animal?',
       'answers': [
         {'text': 'Dog', 'score': 3},
-        {'text': 'Cat', 'score': 11},
+        {'text': 'Cat', 'score': 1},
         {'text': 'Rabbit', 'score': 5},
         {'text': 'Snake', 'score': 6},
       ],
@@ -46,6 +46,13 @@ class _MyAppState extends State<MyApp> {
   ];
   var _questionIdx = 0;
   var _totalScore = 0;
+
+  void _restartQuiz() {
+    setState(() {
+      _questionIdx = 0;
+      _totalScore = 0;
+    });
+  }
 
   void _answerQuestion(int score) {
     _totalScore += score;
@@ -72,7 +79,7 @@ class _MyAppState extends State<MyApp> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIdx,
                 questions: questions)
-            : Result(),
+            : Result(_totalScore, _restartQuiz),
       ),
     );
   }
