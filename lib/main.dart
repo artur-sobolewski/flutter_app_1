@@ -18,28 +18,46 @@ class _MyAppState extends State<MyApp> {
   final questions = const [
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Black', 'Red', 'Green', 'Blue'],
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'Blue', 'score': 1},
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Dog', 'Cat', 'Rabbit', 'Snake'],
+      'answers': [
+        {'text': 'Dog', 'score': 3},
+        {'text': 'Cat', 'score': 11},
+        {'text': 'Rabbit', 'score': 5},
+        {'text': 'Snake', 'score': 6},
+      ],
     },
     {
       'questionText': 'What\'s your favorite musician?',
-      'answers': ['F. Mercury', 'Bob Dylan', 'R. Plant', 'F. Chopin'],
+      'answers': [
+        {'text': 'F. Mercury', 'score': 1},
+        {'text': 'Bob Dylan', 'score': 3},
+        {'text': 'R. Plant', 'score': 2},
+        {'text': 'F. Chopin', 'score': 5},
+      ],
     },
   ];
   var _questionIdx = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     if (_questionIdx < questions.length) {
       setState(() {
         _questionIdx += 1;
       });
-      print(_questionIdx);
     } else {
       print('No more questions');
     }
+    print(_questionIdx);
+    print("points $_totalScore");
   }
 
   @override
